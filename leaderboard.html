@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+        .par{
+            display: flex;
+            margin: auto;
+            justify-content: space-around;
+            width: 50%;
+            margin-top: 70px;
+        }
+        .min{
+            background-color: red;
+            width: 150px;
+            height: 100px;
+            text-align: center;
+            font-size: 30px;
+            justify-content: center;
+        }
+        .max{
+            background-color: green;
+            width: 150px;
+            height: 100px;
+        }
+        .boxdes{
+            display: flex;
+            width: 50%;
+            margin: auto;
+            text-align: center;
+            justify-content: space-around;
+        }
+        p{
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .score{
+            display: flex;
+            background-color: grey;
+            width: 300px;
+            height: 100px;
+            margin: auto;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .par2{
+            display: flex;
+            margin: auto;
+            justify-content: space-around;
+            width: 30%;
+            margin-top: 20px;
+        }
+
+        .cnt1{
+            background-color: rgb(1, 176, 1);
+            width: 90px;
+            height: 90px;
+        }
+        .cnt1 > button{
+            width: 90px;
+            height: 90px;
+            background-color: rgb(1, 176, 1);
+            text-align: center;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .cnt2 > button{
+            width: 90px;
+            height: 90px;
+            background-color: orange;
+            text-align: center;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        .scor > button{
+            display: flex;
+            background-color: grey;
+            width: 300px;
+            height: 80px;
+            margin: auto;
+            font-size: 30px;
+            justify-content: center;
+            margin-top: 20px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="par">
+        <div class="min">
+            <p id="min">48</p>
+        </div>
+        
+        <div class="max">
+            <p id="max">2019</p>
+        </div>
+        
+    </div>
+    <div class="boxdes">
+        <p>MIN</p>
+        <p>MAX</p>
+    </div>
+
+    <p>SCORE</p>
+    <div class="score">
+        <p id="temp">#</p>
+    </div>
+
+    <div class="par2">
+        <div class="cnt1">
+            <button onclick="appendToScore(1)">1</button>
+        </div>
+        <div class="cnt2">
+            <button onclick="appendToScore(2)">2</button>
+        </div>
+        <div class="cnt1">
+            <button onclick="appendToScore(3)">3</button>
+        </div>
+    </div>
+    <div class="par2">
+        <div class="cnt2">
+            <button onclick="appendToScore(4)">4</button>
+        </div>
+        <div class="cnt2">
+            <button onclick="appendToScore(5)">5</button>
+        </div>
+        <div class="cnt2">
+            <button onclick="appendToScore(6)">6</button>
+        </div>
+    </div>
+    <div class="par2">
+        <div class="cnt1">
+            <button onclick="appendToScore(7)">7</button>
+        </div>
+        <div class="cnt2">
+            <button onclick="appendToScore(8)">8</button>
+        </div>
+        <div class="cnt1">
+            <button onclick="appendToScore(9)">9</button>
+        </div>
+    </div>
+    <div class="par2">
+        <div class="cnt1">
+            <button onclick="appendToScore(0)">0</button>
+        </div>
+    </div>
+    <div class="scor">
+        <button onclick="enterScore()">Enter</button>
+    </div>
+    
+
+</body>
+<script>
+    let currentScore = document.getElementById(temp);
+    let minScore = document.getElementById(min);
+    let maxScore = document.getElementById(max);
+
+    function appendToScore(number) {
+        if(currentScore == '#'){
+            currentScore = number;
+            updateScoreDisplay();
+
+        }else{
+            currentScore += number;
+            updateScoreDisplay();
+        }
+    }
+
+    function enterScore() {
+      const numericScore = parseInt(currentScore);
+
+      if (!isNaN(numericScore)) {
+        if (minScore === null || numericScore < minScore) {
+          minScore = numericScore;
+          updateMinMaxDisplay();
+        }
+
+        if (maxScore === null || numericScore > maxScore) {
+          maxScore = numericScore;
+          updateMinMaxDisplay();
+        }
+
+        resetScore();
+      } else {
+        alert('Please enter a valid numeric score.');
+      }
+    }
+
+    function updateScoreDisplay() {
+      document.getElementById('temp').textContent = currentScore;
+    }
+
+    function updateMinMaxDisplay() {
+      document.getElementById('min-score').textContent = minScore;
+      document.getElementById('max-score').textContent = maxScore;
+    }
+
+</script>
+</html>

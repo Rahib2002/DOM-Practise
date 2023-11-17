@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #score-container {
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      display: inline-block;
+    }
+
+    #score {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    #number-buttons {
+      margin-bottom: 20px;
+    }
+
+    button {
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    #min-max-container {
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div id="score-container">
+    <div id="score"></div>
+    <div id="number-buttons">
+      <button onclick="appendToScore(1)">1</button>
+      <button onclick="appendToScore(2)">2</button>
+      <button onclick="appendToScore(3)">3</button>
+      <button onclick="appendToScore(4)">4</button>
+      <button onclick="appendToScore(5)">5</button>
+      <button onclick="appendToScore(6)">6</button>
+      <button onclick="appendToScore(7)">7</button>
+      <button onclick="appendToScore(8)">8</button>
+      <button onclick="appendToScore(9)">9</button>
+      <button onclick="resetScore()">RESET</button>
+      <button onclick="enterScore()">ENTER</button>
+    </div>
+  </div>
+
+  <div id="min-max-container">
+    <div>MIN: <span id="min-score">-</span></div>
+    <div>MAX: <span id="max-score">-</span></div>
+  </div>
+
+  <script>
+    let currentScore = '';
+    let minScore = null;
+    let maxScore = null;
+
+    function appendToScore(number) {
+      currentScore += number;
+      updateScoreDisplay();
+    }
+
+    function resetScore() {
+      currentScore = '';
+      updateScoreDisplay();
+    }
+
+    function enterScore() {
+      const numericScore = parseInt(currentScore);
+
+      if (!isNaN(numericScore)) {
+        if (minScore === null || numericScore < minScore) {
+          minScore = numericScore;
+          updateMinMaxDisplay();
+        }
+
+        if (maxScore === null || numericScore > maxScore) {
+          maxScore = numericScore;
+          updateMinMaxDisplay();
+        }
+
+        resetScore();
+      } else {
+        alert('Please enter a valid numeric score.');
+      }
+    }
+
+    function updateScoreDisplay() {
+      document.getElementById('score').textContent = currentScore;
+    }
+
+    function updateMinMaxDisplay() {
+      document.getElementById('min').textContent = minScore;
+      document.getElementById('max').textContent = maxScore;
+    }
+  </script>
+</body>
+</html>
